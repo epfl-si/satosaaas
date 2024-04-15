@@ -1,0 +1,77 @@
+# - name: Say Hello
+#   debug:
+#     msg: "{{ ansible_host }}"
+#   tags:
+#     - setup.debug
+
+# Give access to ISAS-FSD members
+- name: Allow some of ISAS-FSD members SSH access
+  become: true
+  ansible.posix.authorized_key:
+    user: root
+    state: present
+    key: "https://github.com/{{ item }}.keys"
+  with_items:
+    - ponsfrilus
+    - domq
+    - azecko
+  tags:
+    - setup
+    - setup.ssh
+
+# Install mandatory and comfy tools
+- name: Install useful packages
+  become: true
+  ansible.builtin.apt:
+    name: "{{ item }}"
+    update_cache: true
+  with_items:
+    - ca-certificates
+    - curl
+    - git
+    - iputils-ping
+    - open-vm-tools
+    - tmux
+    - vim
+  tags:
+    - setup
+    - setup.apt
+
+# https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository
+- name: Add the docker repository
+  block:
+    - name: add the download.docker.com GPG key
+      ansible.builtin.get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.asc
+
+    - name: add the download.docker.com repository
+      ansible.builtin.apt_repository:
+        repo: "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu jammy stable"
+        state: present
+
+    - name: Install docker-ce and related softwares
+      become: true
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        # update_cache: true
+      with_items:
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-compose-plugin
+        - python3-docker
+        - python3-pip
+  tags:
+    - setup
+    - setup.docker
+
+# Install Docker + Docker compose (some python package are needed for ansible 
+# to work)
+- name: Install docker-compose python package
+  ansible.builtin.pip:
+    name: docker-compose
+  tags:
+    - setup
+    - setup.docker

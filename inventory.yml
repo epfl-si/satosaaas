@@ -1,0 +1,5 @@
+ all:
+  hosts:
+    itsidevfsd0032.epfl.ch:
+      ansible_user: root
+      ansible_host:  128.178.218.36
