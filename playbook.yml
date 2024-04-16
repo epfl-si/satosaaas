@@ -3,3 +3,9 @@
   gather_facts: no
   roles:
     - role: roles/setup
+
+- name: "Satosa service"
+  hosts: all
+  gather_facts: no
+  roles:
+    - role: roles/satosa

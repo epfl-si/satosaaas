@@ -1,0 +1,15 @@
+{
+    "ATARI": {
+      "token_endpoint_auth_method": "none",
+      "client_id": "atari",
+      "redirect_uris": [
+        "https://atari.epfl.ch/"
+      ],
+      "response_types": [
+        "code"
+      ],
+      "tequila_requires": [
+        { "group" : "ATARI-access" }
+      ]
+    }
+}

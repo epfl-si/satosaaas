@@ -1,0 +1,38 @@
+- name: Clone satosa-tequila repository
+  git:
+    repo: 'https://github.com/epfl-si/satosa-tequila'
+    dest: /srv/satosa-tequila
+    version: "main"
+    force: yes
+  tags:
+    - satosa-tequila
+
+- name: Delete clients.json.sample file
+  ansible.builtin.file:
+    path: /srv/satosa-tequila/data/clients.json.sample
+    state: absent
+  tags:
+    - satosa-tequila
+
+- name: Copy our clients.json to remote
+  ansible.builtin.copy:
+    src: clients.json
+    dest: /srv/satosa-tequila/data/
+  tags:
+    - satosa-tequila
+
+- name: Create certificates
+  make:
+    chdir: /srv/satosa-tequila
+    target: all
+  tags:
+    - satosa-tequila
+
+- name: Start satosa-tequila
+  docker_compose:
+    project_src: /srv/satosa-tequila
+    files:
+      - docker-compose.yml
+    state: present
+  tags:
+    - satosa-tequila
