@@ -1,38 +1,56 @@
+- include_vars: satosa_vars.yml
+  tags: always
+
 - name: Clone satosa-tequila repository
-  git:
-    repo: 'https://github.com/epfl-si/satosa-tequila'
-    dest: /srv/satosa-tequila
+  ansible.builtin.git:
+    repo: "{{ satosa_tequila_source_repo }}"
+    dest: "{{ satosa_tequila_install_path }}"
     version: "main"
     force: yes
   tags:
     - satosa-tequila
 
-- name: Delete clients.json.sample file
-  ansible.builtin.file:
-    path: /srv/satosa-tequila/data/clients.json.sample
-    state: absent
-  tags:
-    - satosa-tequila
-
+# TODO: use Ansible vars with a template to create this file?
 - name: Copy our clients.json to remote
   ansible.builtin.copy:
     src: clients.json
-    dest: /srv/satosa-tequila/data/
+    dest: "{{ satosa_tequila_install_path }}/data/"
   tags:
     - satosa-tequila
 
+# TODO: avoid to depend on make and use a valid certificate
 - name: Create certificates
-  make:
-    chdir: /srv/satosa-tequila
+  ansible.builtin.make:
+    chdir: "{{ satosa_tequila_install_path }}"
     target: all
   tags:
     - satosa-tequila
 
-- name: Start satosa-tequila
-  docker_compose:
-    project_src: /srv/satosa-tequila
-    files:
-      - docker-compose.yml
-    state: present
+# Please see https://github.com/epfl-si/satosa-tequila/blob/main/docker-compose.yml
+# from https://github.com/epfl-si/satosa-tequila 
+- name: Start the satosa-tequila container
+  community.docker.docker_container:
+    name: "{{ satosa_tequila_container_name }}"
+    image: "{{ satosa_docker_image }}"
+    state: started
+    restart: true
+    command:
+      - bash
+      - -x
+      - /custom-entrypoint.sh
+    volumes:
+      - "{{ satosa_tequila_install_path }}/custom-entrypoint.sh:/custom-entrypoint.sh:ro"
+      - "{{ satosa_tequila_install_path }}/config:/config:ro"
+      - "{{ satosa_tequila_install_path }}/config/attributemaps:/attributemaps:ro"
+      - "{{ satosa_tequila_install_path }}/data:/data:ro"
+      - "{{ satosa_tequila_install_path }}/proxy_conf.yaml:/proxy_conf.yaml:ro"
+      - "{{ satosa_tequila_install_path }}/site-python/epfl:/site-python/epfl:ro"
+      - "{{ satosa_tequila_install_path }}/tls:/tls:ro"
+    env:
+      PYTHONPATH: /site-python
+      SATOSA_ENTITY_ID: "{{ satosa_entity_id }}"
+      SATOSA_BASE_URL: "{{ satosa_base_url }}"
+    ports:
+     - "443:8443"
   tags:
     - satosa-tequila

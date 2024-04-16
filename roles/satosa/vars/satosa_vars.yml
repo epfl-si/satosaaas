@@ -1,0 +1,7 @@
+
+satosa_docker_image: "satosa:8"
+satosa_tequila_container_name: "satosa-tequila"
+satosa_tequila_source_repo: "https://github.com/epfl-si/satosa-tequila"
+satosa_tequila_install_path: "/srv/satosa-tequila"
+satosa_entity_id: "https://tkgi-satosa.epfl.ch/tequila"
+satosa_base_url: "https://itsidevfsd0033.xaas.epfl.ch"

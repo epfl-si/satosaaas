@@ -1,7 +1,7 @@
 {
     "ATARI": {
       "token_endpoint_auth_method": "none",
-      "client_id": "atari",
+      "client_id": "ATARI",
       "redirect_uris": [
         "https://atari.epfl.ch/"
       ],
