@@ -9,7 +9,35 @@
         "code"
       ],
       "tequila_requires": [
-        { "group" : "ATARI-access" }
+        { "group": "ATARI-access" }
+      ]
+    },
+    "LHDv3_prod": {
+      "token_endpoint_auth_method": "none",
+      "client_id": "LHDv3_prod",
+      "redirect_uris": [
+        "https://lhd.epfl.ch/*"
+      ],
+      "response_types": [
+        "code"
+      ],
+      "tequila_requires": [
+        { "group": "LHD_acces_lecture" },
+        { "group": "LHD_acces_admin" }
+      ]
+    },
+    "LHDv3_test": {
+      "token_endpoint_auth_method": "none",
+      "client_id": "LHDv3_test",
+      "redirect_uris": [
+        "https://lhd-test.epfl.ch/*"
+      ],
+      "response_types": [
+        "code"
+      ],
+      "tequila_requires": [
+        { "group": "LHD_acces_lecture" },
+        { "group": "LHD_acces_admin" }
       ]
     }
 }
