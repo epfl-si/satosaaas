@@ -15,6 +15,7 @@
     - ponsfrilus
     - domq
     - azecko
+    - rosamaggi
   tags:
     - setup
     - setup.ssh
@@ -67,7 +68,7 @@
     - setup
     - setup.docker
 
-# Install Docker + Docker compose (some python package are needed for ansible 
+# Install Docker + Docker compose (some python package are needed for ansible
 # to work)
 - name: Install docker-compose python package
   ansible.builtin.pip:
