@@ -12,9 +12,12 @@
     state: present
     key: "https://github.com/{{ item }}.keys"
   with_items:
-    - ponsfrilus
-    - domq
     - azecko
+    - domq
+    - multiscan
+    - ponsfrilus
+    - rosamaggi
+    - williambelle
   tags:
     - setup
     - setup.ssh
