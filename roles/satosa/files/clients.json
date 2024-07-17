@@ -9,7 +9,7 @@
         "code"
       ],
       "tequila_requires": [
-        { "group" : "ATARI-access" }
+        { "group": "ATARI-access" }
       ]
     },
     "LHDv3_prod": {
@@ -22,8 +22,8 @@
         "code"
       ],
       "tequila_requires": [
-        { "group" : "lhd_acces_lecture" },
-        { "group" : "LHD_acces_admin" }
+        { "group": "lhd_acces_lecture" },
+        { "group": "LHD_acces_admin" }
       ]
     },
     "LHDv3_test": {
@@ -36,8 +36,8 @@
         "code"
       ],
       "tequila_requires": [
-        { "group" : "lhd_acces_lecture" },
-        { "group" : "LHD_acces_admin" }
+        { "group": "LHD_acces_lecture" },
+        { "group": "LHD_acces_admin" }
       ]
     }
 }
