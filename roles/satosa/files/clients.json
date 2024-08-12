@@ -16,7 +16,7 @@
       "token_endpoint_auth_method": "none",
       "client_id": "LHDv3_prod",
       "redirect_uris": [
-        "https://lhd.epfl.ch/"
+        "https://lhd.epfl.ch/*"
       ],
       "response_types": [
         "code"
@@ -30,7 +30,7 @@
       "token_endpoint_auth_method": "none",
       "client_id": "LHDv3_test",
       "redirect_uris": [
-        "https://lhd-test.epfl.ch/"
+        "https://lhd-test.epfl.ch/*"
       ],
       "response_types": [
         "code"
