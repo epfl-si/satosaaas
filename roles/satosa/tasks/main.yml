@@ -20,7 +20,7 @@
 
 - name: Manage the server's certificates
   block:
-  - name: Check access to /keybase/epfl_satosaaas
+  - name: Check access to /keybase/team/epfl_satosaaas
     delegate_to: localhost
     ansible.builtin.stat:
       path: /keybase/team/epfl_satosaaas/itsidevfsd0033.xaas.epfl.ch/itsidevfsd0033_xaas_epfl_ch.key
