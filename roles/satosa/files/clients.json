@@ -39,5 +39,15 @@
         { "group": "LHD_acces_lecture" },
         { "group": "LHD_acces_admin" }
       ]
+    },
+    "mastodon_test": {
+      "token_endpoint_auth_method": "none",
+      "client_id": "mastodon_test",
+      "redirect_uris": [
+        "https://mastodon-test.fsd.team/*"
+      ],
+      "response_types": [
+        "code"
+      ]
     }
 }
