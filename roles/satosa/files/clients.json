@@ -28,8 +28,7 @@
         "code"
       ],
       "tequila_requires": [
-        { "group": "LHD_acces_lecture" },
-        { "group": "LHD_acces_admin" }
+        { "group": "LHD_acces_lecture" }
       ]
     },
     "LHDv3_test": {
@@ -48,8 +47,7 @@
         "code"
       ],
       "tequila_requires": [
-        { "group": "LHD_acces_lecture" },
-        { "group": "LHD_acces_admin" }
+        { "group": "LHD_acces_lecture" }
       ]
     },
     "mastodon_test": {
