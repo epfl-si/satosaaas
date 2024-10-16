@@ -10,6 +10,16 @@
   tags:
     - satosa-tequila
 
+- name: Build image
+  docker_image:
+    source: build
+    build:
+      path: "{{ satosa_tequila_install_path }}"
+    name: satosa-tequila
+    tag: latest
+  tags:
+    - satosa-tequila
+
 # TODO: use Ansible vars with a template to create this file?
 - name: Copy our clients.json to remote
   ansible.builtin.copy:
@@ -47,7 +57,7 @@
 - name: Start the satosa-tequila container
   community.docker.docker_container:
     name: "{{ satosa_tequila_container_name }}"
-    image: "{{ satosa_docker_image }}"
+    image: "satosa-tequila:latest"
     state: started
     restart: true
     command:
