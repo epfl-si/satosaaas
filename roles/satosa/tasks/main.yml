@@ -59,7 +59,7 @@
       - "{{ satosa_tequila_install_path }}/config:/config:ro"
       - "{{ satosa_tequila_install_path }}/config/attributemaps:/attributemaps:ro"
       - "{{ satosa_tequila_install_path }}/data:/data:ro"
-      - "{{ satosa_tequila_install_path }}/proxy_conf.yaml:/proxy_conf.yaml:ro"
+      - "{{ satosa_tequila_install_path }}/config/proxy_conf.yaml:/etc/satosa/proxy_conf.yaml:ro"
       - "{{ satosa_tequila_install_path }}/site-python/epfl:/site-python/epfl:ro"
       - "{{ satosa_tequila_install_path }}/tls:/tls:ro"
     env:
