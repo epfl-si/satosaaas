@@ -35,13 +35,7 @@
       "token_endpoint_auth_method": "none",
       "client_id": "LHDv3_test",
       "redirect_uris": [
-        "https://lhd-test.epfl.ch/roomcontrol",
-        "https://lhd-test.epfl.ch/roomdetails",
-        "https://lhd-test.epfl.ch/unitcontrol",
-        "https://lhd-test.epfl.ch/unitdetails",
-        "https://lhd-test.epfl.ch/hazardformcontrol",
-        "https://lhd-test.epfl.ch/formdetails",
-        "https://lhd-test.epfl.ch/hazardFormChildDetails"
+        "https://lhd-test.epfl.ch/*"
       ],
       "response_types": [
         "code"
