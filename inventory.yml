@@ -1,5 +1,4 @@
  all:
   hosts:
-    itsidevfsd0033.epfl.ch:
+    itsidevfsd0033.xaas.epfl.ch:
       ansible_user: root
-      ansible_host: 10.95.80.52
